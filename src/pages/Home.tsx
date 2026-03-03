@@ -54,7 +54,8 @@ const Home: React.FC = () => {
       behavior: "smooth"
     });
   };
-  return <>
+  return ( 
+    <>
       <Header />
       <PopupForm isOpen={isPopupOpen} onClose={closePopup} />
       <div className="min-h-screen bg-background text-foreground selection:bg-primary/20 pt-16 overflow-x-hidden">
