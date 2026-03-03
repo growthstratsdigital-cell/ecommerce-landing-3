@@ -609,25 +609,21 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <footer className="py-8 border-t border-border bg-muted/30">
-        <div className="container mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="flex justify-center items-center py-10 w-full">
-               <img 
-                 src="/logo.png" 
-                 alt="Growth Strats Digital" 
-                 className="h-16"
-               />
-            </div>
-          <p className="text-muted-foreground text-sm mb-4">
-            Performance Marketing Agency for Ecommerce Brands
-          </p>
-          <p className="text-muted-foreground text-xs">
-            © 2026 Growth Strats. All rights reserved.
-          </p>
-        </div>
-      </footer>
-      </div>
+<div className="container mx-auto px-4 text-center"> 
+  <div className="py-10">
+    <img 
+      src="/logo.png" 
+      alt="Growth Strats Digital" 
+      className="h-16 mx-auto"
+    />
+  </div>
+  <p className="text-muted-foreground text-sm mb-4">
+    Performance Marketing Agency for Ecommerce Brands
+  </p>
+  <p className="text-muted-foreground text-xs">
+    © 2026 Growth Strats. All rights reserved.
+  </p>
+</div>
     </>;
 };
 export default Home;
