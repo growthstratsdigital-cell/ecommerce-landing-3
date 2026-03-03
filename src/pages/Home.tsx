@@ -593,37 +593,32 @@ const Home: React.FC = () => {
       </section>
 
       {/* 9. FAQ SECTION */}
-      <section className="py-8 md:py-12">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <div className="text-center mb-6">
-            <h2 className="text-2xl md:text-3xl font-bold">Common Questions</h2>
-          </div>
-          <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq, idx) => <AccordionItem key={idx} value={`item-${idx}`}>
-                <AccordionTrigger className="text-left font-bold text-sm md:text-base">{faq.question}</AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>)}
-          </Accordion>
-        </div>
-      </section>
+           </section>
 
-<div className="container mx-auto px-4 text-center"> 
-  <div className="py-10">
-    <img 
-      src="/logo.png" 
-      alt="Growth Strats Digital" 
-      className="h-16 mx-auto"
-    />
-  </div>
-  <p className="text-muted-foreground text-sm mb-4">
-    Performance Marketing Agency for Ecommerce Brands
-  </p>
-  <p className="text-muted-foreground text-xs">
-    © 2026 Growth Strats. All rights reserved.
-  </p>
-</div>
-    </>;
-};
-export default Home;
+      {/* CLOSE MAIN WRAPPER */}
+      </div>
+
+      {/* FOOTER SECTION */}
+      <footer className="border-t border-border py-10">
+        <div className="container mx-auto px-4 text-center">
+
+          <div className="py-6">
+            <img 
+              src="/logo.png" 
+              alt="Growth Strats Digital" 
+              className="h-16 mx-auto"
+            />
+          </div>
+
+          <p className="text-muted-foreground text-sm mb-4">
+            Performance Marketing Agency for Ecommerce Brands
+          </p>
+
+          <p className="text-muted-foreground text-xs">
+            © 2026 Growth Strats. All rights reserved.
+          </p>
+
+        </div>
+      </footer>
+
+    </>
