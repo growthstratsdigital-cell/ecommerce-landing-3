@@ -593,9 +593,13 @@ const Home: React.FC = () => {
       </section>
 
       {/* 9. FAQ SECTION */}
-    </section>
+         </section>
+
+      </div>  {/* closes min-h-screen wrapper */}
+
       <footer className="border-t border-border py-10">
         <div className="container mx-auto px-4 text-center">
+
           <div className="py-6">
             <img 
               src="/logo.png" 
@@ -603,14 +607,17 @@ const Home: React.FC = () => {
               className="h-16 mx-auto"
             />
           </div>
+
           <p className="text-muted-foreground text-sm mb-4">
             Performance Marketing Agency for Ecommerce Brands
           </p>
+
           <p className="text-muted-foreground text-xs">
             © 2026 Growth Strats. All rights reserved.
           </p>
+
         </div>
       </footer>
-    </>
 
+    </>
 export default Home;
