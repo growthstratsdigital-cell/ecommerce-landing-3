@@ -612,11 +612,13 @@ const Home: React.FC = () => {
       <footer className="py-8 border-t border-border bg-muted/30">
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="h-10 w-10 bg-primary rounded-lg flex items-center justify-center">
-              <TrendingUp className="text-primary-foreground" size={20} />
+            <div className="flex justify-center items-center py-10 w-full">
+               <img 
+                 src="/logo.png" 
+                 alt="Growth Strats Digital" 
+                 className="h-16"
+               />
             </div>
-            <span className="text-2xl font-extrabold tracking-tight">Growth Strats</span>
-          </div>
           <p className="text-muted-foreground text-sm mb-4">
             Performance Marketing Agency for Ecommerce Brands
           </p>
