@@ -7,7 +7,7 @@ const Header: React.FC = () => {
           <div>
             {/* Growth Strats Official Logo */}
             <img 
-              src={IMAGES.GROWTH_STRATS_LOGO} 
+              src="/logo.png"
               alt="Growth Strats Logo" 
               className="h-14 w-auto object-contain"
             />
