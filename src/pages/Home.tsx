@@ -593,7 +593,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* 9. FAQ SECTION */}
-           </section>
+    </section>
       <footer className="border-t border-border py-10">
         <div className="container mx-auto px-4 text-center">
           <div className="py-6">
