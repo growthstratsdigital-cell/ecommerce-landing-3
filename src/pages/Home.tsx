@@ -593,8 +593,6 @@ const Home: React.FC = () => {
       </section>
 
       {/* 9. FAQ SECTION */}
-         </section>
-
       </div>  {/* closes min-h-screen wrapper */}
 
       <footer className="border-t border-border py-10">
