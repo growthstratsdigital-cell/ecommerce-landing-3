@@ -618,3 +618,7 @@ const Home: React.FC = () => {
       </footer>
 
     </>
+   );
+};
+
+export default Home;
