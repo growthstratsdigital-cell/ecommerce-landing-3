@@ -16,7 +16,7 @@ import PopupForm from "@/components/PopupForm";
 import { supabase } from "@/lib/supabase";
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
-  phoneNumber: z.string().min(8, "Valid phone number required"),
+  phoneNumber: z.string().min(10, "Valid phone number required"),
   email: z.string().email("Valid work email required"),
   websiteUrl: z.string().url("Valid website URL required"),
   monthlyAdBudget: z.string().min(1, "Please select Ad Budget"),
