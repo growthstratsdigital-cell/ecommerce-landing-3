@@ -17,7 +17,7 @@ const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
   email: z.string().email("Valid work email required"),
   websiteUrl: z.string().url("Valid website URL required"),
-  monthlyRevenue: z.string().min(1, "Please select revenue range"),
+  monthlyAdBudget: z.string().min(1, "Please select Ad Budget"),
   packageInterest: z.string().min(1, "Please select a package")
 });
 const Home: React.FC = () => {
@@ -571,15 +571,15 @@ const Home: React.FC = () => {
                     {errors.websiteUrl && <p className="text-xs text-destructive">{errors.websiteUrl.message}</p>}
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="monthlyRevenue">Monthly Revenue</Label>
-                    <select id="monthlyRevenue" className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" {...register("monthlyRevenue")}>
+                    <Label htmlFor="monthlyAdBudget">Monthly Ad Budget</Label>
+                    <select id="monthlyAdBudget" className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" {...register("monthlyRevenue")}>
                       <option value="">Select Range</option>
                       <option value="0-50k">Under ₹50,000</option>
                       <option value="50k-200k">₹50,000 - ₹2,00,000</option>
                       <option value="200k-500k">₹2,00,000 - ₹5,00,000</option>
                       <option value="500k+">₹5,00,000+</option>
                     </select>
-                    {errors.monthlyRevenue && <p className="text-xs text-destructive">{errors.monthlyRevenue.message}</p>}
+                    {errors.monthlyAdBudget && <p className="text-xs text-destructive">{errors.monthlyAdBudget.message}</p>}
                   </div>
                   <div className="space-y-2">
   <Label htmlFor="packageInterest">Which growth package fits your current stage?</Label>
