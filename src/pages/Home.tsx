@@ -17,7 +17,8 @@ const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
   email: z.string().email("Valid work email required"),
   websiteUrl: z.string().url("Valid website URL required"),
-  monthlyRevenue: z.string().min(1, "Please select revenue range")
+  monthlyRevenue: z.string().min(1, "Please select revenue range"),
+  packageInterest: z.string().min(1, "Please select a package")
 });
 const Home: React.FC = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -580,6 +581,26 @@ const Home: React.FC = () => {
                     </select>
                     {errors.monthlyRevenue && <p className="text-xs text-destructive">{errors.monthlyRevenue.message}</p>}
                   </div>
+                  <div className="space-y-2">
+  <Label htmlFor="packageInterest">Which growth package fits your current stage?</Label>
+
+  <select
+    id="packageInterest"
+    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+    {...register("packageInterest")}
+  >
+    <option value="">Select Package</option>
+    <option value="Basic">Basic (₹30,000/Month)</option>
+    <option value="Premium">Premium (₹60,000/Month)</option>
+    <option value="Super Premium">Super Premium (₹1,00,000/Month)</option>
+  </select>
+
+  {errors.packageInterest && (
+    <p className="text-xs text-destructive">
+      {errors.packageInterest.message}
+    </p>
+  )}
+</div>
                   <Button type="submit" className="w-full py-4 md:py-6 text-sm md:text-base lg:text-lg bg-primary hover:bg-primary/90 px-4" size="lg">
                     <span className="text-center leading-tight">Book My Free Growth Strategy Call</span>
                   </Button>
