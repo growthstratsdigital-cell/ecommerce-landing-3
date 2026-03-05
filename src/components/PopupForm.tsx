@@ -10,16 +10,16 @@ import * as z from "zod";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
-  phone: z.string().min(10, "Valid phone number required"),
+  phoneNumber: z.string().min(10, "Valid phone number required"),
   email: z.string().email("Valid email required"),
   websiteUrl: z.string().url("Valid website URL required"),
   monthlyAdBudget: z.string().min(1, "Please select ad budget range"),
-  currentRoas: z.string().min(1, "Please select current ROAS"),
+  packageInterest: z.string().min(1, "Please select package"),
 });
 
 interface PopupFormData {
   name: string;
-  phone: string;
+  phoneNumber: string;
   email: string;
   websiteUrl: string;
   monthlyAdBudget: string;
@@ -36,12 +36,32 @@ const PopupForm: React.FC<PopupFormProps> = ({ isOpen, onClose }) => {
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = (data: PopupFormData) => {
-    console.log("Form submitted:", data);
-    alert("Thank you! We will contact you within 12 hours to schedule your free growth strategy call.");
-    reset();
-    onClose();
-  };
+ const onSubmit = async (data: FormData) => {
+  try {
+    const response = await fetch(
+      "https://uutxbyxgpefvboevshkc.supabase.co/rest/v1/leads",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV1dHhieXhncGVmdmJvZXZzaGtjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxMTM1OTYsImV4cCI6MjA4NzY4OTU5Nn0.HmOa6AlhLrngU5C7zhmALj5bEJmVO0kj-ctYm_HEqcw",
+          Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV1dHhieXhncGVmdmJvZXZzaGtjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxMTM1OTYsImV4cCI6MjA4NzY4OTU5Nn0.HmOa6AlhLrngU5C7zhmALj5bEJmVO0kj-ctYm_HEqcw",
+          Prefer: "return=minimal"
+        },
+        body: JSON.stringify(data)
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to submit");
+    }
+
+    alert("Thank you! We'll contact you shortly.");
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong. Please try again.");
+  }
+};
 
   if (!isOpen) return null;
 
@@ -84,14 +104,14 @@ const PopupForm: React.FC<PopupFormProps> = ({ isOpen, onClose }) => {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="phone">Phone Number *</Label>
+              <Label htmlFor="phoneNumber">Phone Number *</Label>
               <Input 
-                id="phone" 
+                id="phoneNumber" 
                 placeholder="+91 98765 43210" 
                 {...register("phone")} 
                 className="border-primary/20 focus:border-primary"
               />
-              {errors.phone && <p className="text-xs text-destructive">{errors.phone.message}</p>}
+              {errors.phoneNumber && <p className="text-xs text-destructive">{errors.phoneNumber.message}</p>}
             </div>
             
             <div className="space-y-2">
