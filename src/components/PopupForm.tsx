@@ -130,6 +130,7 @@ const PopupForm: React.FC<PopupFormProps> = ({ isOpen, onClose }) => {
               <Label htmlFor="websiteUrl">Website URL *</Label>
               <Input 
                 id="websiteUrl" 
+                type="text"
                 placeholder="https://yourbrand.com" 
                 {...register("websiteUrl")} 
                 className="border-primary/20 focus:border-primary"
