@@ -107,7 +107,7 @@ const PopupForm: React.FC<PopupFormProps> = ({ isOpen, onClose }) => {
               <Label htmlFor="phoneNumber">Phone Number *</Label>
               <Input 
                 id="phoneNumber" 
-                placeholder="+91 98765 43210" 
+                placeholder="9876543210" 
                 {...register("phone")} 
                 className="border-primary/20 focus:border-primary"
               />
