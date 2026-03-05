@@ -7,6 +7,7 @@ export interface FormData {
   email: string;
   websiteUrl: string;
   monthlyRevenue: string;
+  packageInterest: string;
 }
 
 export interface PricingPackage {
