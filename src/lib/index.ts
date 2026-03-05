@@ -4,6 +4,7 @@ export const ROUTE_PATHS = {
 
 export interface FormData {
   name: string;
+  phoneNumber: string;  
   email: string;
   websiteUrl: string;
   monthlyAdBudget: string;
