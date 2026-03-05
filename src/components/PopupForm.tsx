@@ -13,7 +13,7 @@ const formSchema = z.object({
   phone: z.string().min(10, "Valid phone number required"),
   email: z.string().email("Valid email required"),
   websiteUrl: z.string().url("Valid website URL required"),
-  monthlyAdSpend: z.string().min(1, "Please select ad spend range"),
+  monthlyAdBudget: z.string().min(1, "Please select ad budget range"),
   currentRoas: z.string().min(1, "Please select current ROAS"),
 });
 
@@ -22,8 +22,8 @@ interface PopupFormData {
   phone: string;
   email: string;
   websiteUrl: string;
-  monthlyAdSpend: string;
-  currentRoas: string;
+  monthlyAdBudget: string;
+  packageInterest: string;
 }
 
 interface PopupFormProps {
@@ -118,38 +118,34 @@ const PopupForm: React.FC<PopupFormProps> = ({ isOpen, onClose }) => {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="monthlyAdSpend">Monthly Ad Spend *</Label>
+              <Label htmlFor="monthlyAdBudget">Monthly Ad Budget *</Label>
               <select 
-                id="monthlyAdSpend" 
+                id="monthlyAdBudget" 
                 className="flex h-10 w-full rounded-md border border-primary/20 bg-background px-3 py-2 text-sm ring-offset-background focus:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                {...register("monthlyAdSpend")}
+                {...register("monthlyAdBudget")}
               >
                 <option value="">Select Range</option>
                 <option value="0-50k">Under ₹50,000</option>
-                <option value="50k-100k">₹50,000 - ₹1,00,000</option>
-                <option value="100k-200k">₹1,00,000 - ₹2,00,000</option>
+                <option value="50k-100k">₹50,000 - ₹2,00,000</option>
                 <option value="200k-500k">₹2,00,000 - ₹5,00,000</option>
                 <option value="500k+">₹5,00,000+</option>
               </select>
-              {errors.monthlyAdSpend && <p className="text-xs text-destructive">{errors.monthlyAdSpend.message}</p>}
+              {errors.monthlyAdBudget && <p className="text-xs text-destructive">{errors.monthlyAdBudget.message}</p>}
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="currentRoas">Current ROAS (Return On Ad Spend) *</Label>
+              <Label htmlFor="packageInterest">Which growth package fits your current stage? *</Label>
               <select 
-                id="currentRoas" 
+                id="packageInterest" 
                 className="flex h-10 w-full rounded-md border border-primary/20 bg-background px-3 py-2 text-sm ring-offset-background focus:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                {...register("currentRoas")}
+                {...register("packageInterest")}
               >
-                <option value="">Select Current ROAS</option>
-                <option value="below-1x">Below 1x (Losing Money)</option>
-                <option value="1x-2x">1x - 2x (Breaking Even)</option>
-                <option value="2x-3x">2x - 3x (Profitable)</option>
-                <option value="3x-4x">3x - 4x (Good Profit)</option>
-                <option value="4x+">4x+ (Excellent)</option>
-                <option value="not-sure">Not Sure / Don't Track</option>
+                <option value="">Select Package</option>
+                <option value="Basic">Basic (₹30,000/Month)</option>
+                <option value="Premium">Premium (₹60,000/Month)</option>
+                <option value="Super Premium">Super Premium (₹1,00,000/Month)</option>
               </select>
-              {errors.currentRoas && <p className="text-xs text-destructive">{errors.currentRoas.message}</p>}
+              {errors.packageInterest && <p className="text-xs text-destructive">{errors.packageInterest.message}</p>}
             </div>
             
             <Button 
