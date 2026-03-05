@@ -10,9 +10,9 @@ import * as z from "zod";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
-  phoneNumber: z.string().min(10, "Valid phone number required"),
+  phoneNumber: z.string().min(10, "Enter a valid phone number").max(15),
   email: z.string().email("Valid email required"),
-  websiteUrl: z.string().url("Valid website URL required"),
+  websiteUrl: z.string().url("Website is required"),
   monthlyAdBudget: z.string().min("Please select ad budget range"),
   packageInterest: z.string().min(1, "Please select package"),
 });
