@@ -13,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import Header from "@/components/Header";
 import PopupForm from "@/components/PopupForm";
+import { supabase } from "@/lib/supabase";
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
   phoneNumber: z.string().min(8, "Valid phone number required"),
