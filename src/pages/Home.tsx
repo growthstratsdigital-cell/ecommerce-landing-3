@@ -18,7 +18,7 @@ const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
   phoneNumber: z.string().min(10, "Enter a valid phone number").max(15),
   email: z.string().email("Valid work email required"),
-  websiteUrl: z.string().url("Valid website URL required"),
+  websiteUrl: z.string().url("Website is required"),
   monthlyAdBudget: z.string().min("Please select Ad Budget"),
   packageInterest: z.string().min(1, "Please select a package")
 });
