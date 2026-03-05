@@ -15,6 +15,7 @@ import Header from "@/components/Header";
 import PopupForm from "@/components/PopupForm";
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
+  phoneNumber: z.string().min(8, "Valid phone number required"),
   email: z.string().email("Valid work email required"),
   websiteUrl: z.string().url("Valid website URL required"),
   monthlyAdBudget: z.string().min(1, "Please select Ad Budget"),
@@ -582,6 +583,22 @@ const Home: React.FC = () => {
                     <Input id="name" placeholder="John Doe" {...register("name")} />
                     {errors.name && <p className="text-xs text-destructive">{errors.name.message}</p>}
                   </div>
+                  <div className="space-y-2">
+  <Label htmlFor="phone">Phone Number</Label>
+
+  <Input
+    id="phoneNumber"
+    type="tel"
+    placeholder="+91 9876543210"
+    {...register("phoneNumber")}
+  />
+
+  {errors.phoneNumber && (
+    <p className="text-xs text-destructive">
+      {errors.phoneNumber.message}
+    </p>
+  )}
+</div>
                   <div className="space-y-2">
                     <Label htmlFor="email">Work Email</Label>
                     <Input id="email" type="email" placeholder="john@yourbrand.com" {...register("email")} />
