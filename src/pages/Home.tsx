@@ -607,7 +607,7 @@ const Home: React.FC = () => {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="websiteUrl">Website URL</Label>
-                    <Input id="websiteUrl" placeholder="https://yourbrand.com" {...register("websiteUrl")} />
+                    <Input id="websiteUrl" type="text" placeholder="https://yourbrand.com" {...register("websiteUrl")} />
                     {errors.websiteUrl && <p className="text-xs text-destructive">{errors.websiteUrl.message}</p>}
                   </div>
                   <div className="space-y-2">
