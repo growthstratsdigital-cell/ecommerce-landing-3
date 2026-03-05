@@ -16,7 +16,7 @@ import PopupForm from "@/components/PopupForm";
 import { supabase } from "@/lib/supabase";
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
-  phoneNumber: z.string().min(10, "Valid phone number required"),
+  phoneNumber: z.string().min(10, "Enter a valid phone number").max(15),
   email: z.string().email("Valid work email required"),
   websiteUrl: z.string().url("Valid website URL required"),
   monthlyAdBudget: z.string().min("Please select Ad Budget"),
@@ -585,7 +585,7 @@ const Home: React.FC = () => {
                     {errors.name && <p className="text-xs text-destructive">{errors.name.message}</p>}
                   </div>
                   <div className="space-y-2">
-  <Label htmlFor="phone">Phone Number</Label>
+  <Label htmlFor="phoneNumber">Phone Number</Label>
 
   <Input
     id="phoneNumber"
