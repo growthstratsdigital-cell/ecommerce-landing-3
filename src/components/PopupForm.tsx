@@ -37,20 +37,29 @@ const PopupForm: React.FC<PopupFormProps> = ({ isOpen, onClose }) => {
   });
 
  const onSubmit = async (data: FormData) => {
-  try {
-    const response = await fetch(
-      "https://uutxbyxgpefvboevshkc.supabase.co/rest/v1/leads",
+  console.log("FORM DATA:", data);
+  alert("Form submitted!");
+
+  const { error } = await supabase
+    .from("leads")
+    .insert([
       {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV1dHhieXhncGVmdmJvZXZzaGtjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxMTM1OTYsImV4cCI6MjA4NzY4OTU5Nn0.HmOa6AlhLrngU5C7zhmALj5bEJmVO0kj-ctYm_HEqcw",
-          Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV1dHhieXhncGVmdmJvZXZzaGtjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxMTM1OTYsImV4cCI6MjA4NzY4OTU5Nn0.HmOa6AlhLrngU5C7zhmALj5bEJmVO0kj-ctYm_HEqcw",
-          Prefer: "return=minimal"
-        },
-        body: JSON.stringify(data)
+        name: data.name,
+        email: data.email,
+        phoneNumber: data.phoneNumber,
+        website_url: data.websiteUrl,
+        monthly_ad_budget: data.monthlyAdBudget,
+        package_interest: data.packageInterest
       }
-    );
+    ]);
+
+  if (error) {
+    console.error("SUPABASE ERROR:", error);
+    alert("Error submitting form");
+  } else {
+    alert("Lead submitted successfully!");
+  }
+};
 
     if (!response.ok) {
       throw new Error("Failed to submit");
