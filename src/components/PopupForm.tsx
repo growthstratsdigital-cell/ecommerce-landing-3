@@ -13,7 +13,7 @@ const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
   phoneNumber: z.string().min(10, "Enter a valid phone number").max(15),
   email: z.string().email("Valid email required"),
-  websiteUrl: z.string().url("Website is required"),
+  websiteUrl: z.string().min(3, "Website is required"),
   monthlyAdBudget: z.string().min("Please select ad budget range"),
   packageInterest: z.string().min(1, "Please select package"),
 });
@@ -146,7 +146,7 @@ const PopupForm: React.FC<PopupFormProps> = ({ isOpen, onClose }) => {
               <Input 
                 id="websiteUrl" 
                 type="text"
-                placeholder="https://yourbrand.com" 
+                placeholder="yourbrand.com" 
                 {...register("websiteUrl")} 
                 className="border-primary/20 focus:border-primary"
               />
