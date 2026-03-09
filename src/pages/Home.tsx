@@ -41,29 +41,33 @@ const Home: React.FC = () => {
   } = useForm<FormData>({
     resolver: zodResolver(formSchema)
   });
- const onSubmit = async (data: FormData) => {
+const onSubmit = async (data: PopupFormData) => {
   try {
-    const response = await fetch(
-      "https://uutxbyxgpefvboevshkc.supabase.co/rest/v1/leads",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV1dHhieXhncGVmdmJvZXZzaGtjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxMTM1OTYsImV4cCI6MjA4NzY4OTU5Nn0.HmOa6AlhLrngU5C7zhmALj5bEJmVO0kj-ctYm_HEqcw",
-          Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV1dHhieXhncGVmdmJvZXZzaGtjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxMTM1OTYsImV4cCI6MjA4NzY4OTU5Nn0.HmOa6AlhLrngU5C7zhmALj5bEJmVO0kj-ctYm_HEqcw",
-          Prefer: "return=minimal"
-        },
-        body: JSON.stringify(data)
-      }
-    );
+    console.log("FORM DATA:", data);
 
-    if (!response.ok) {
-      throw new Error("Failed to submit");
+    const { error } = await supabase
+      .from("leads")
+      .insert([
+        {
+          name: data.name,
+          email: data.email,
+          phone: data.phoneNumber,
+          website_url: data.websiteUrl,
+          monthly_ad_budget: data.monthlyAdBudget,
+          package_interest: data.packageInterest
+        }
+      ]);
+
+    if (error) {
+      throw error;
     }
 
     alert("Thank you! We'll contact you shortly.");
+    reset();
+    onClose();
+
   } catch (error) {
-    console.error(error);
+    console.error("Supabase Error:", error);
     alert("Something went wrong. Please try again.");
   }
 };
