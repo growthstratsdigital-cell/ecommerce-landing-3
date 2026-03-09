@@ -50,7 +50,7 @@ const PopupForm: React.FC<PopupFormProps> = ({ isOpen, onClose }) => {
             email: data.email,
             phone: data.phoneNumber,
             website_url: data.websiteUrl,
-            monthly_revenue: data.monthlyAdBudget,
+            monthly_ad_budget: data.monthlyAdBudget,
             package_interest: data.packageInterest
           }
         ]);
