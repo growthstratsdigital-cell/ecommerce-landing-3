@@ -36,28 +36,32 @@ const PopupForm: React.FC<PopupFormProps> = ({ isOpen, onClose }) => {
     resolver: zodResolver(formSchema),
   });
 
- const onSubmit = async (data: FormData) => {
-  console.log("FORM DATA:", data);
-  alert("Form submitted!");
+const onSubmit = async (data: FormData) => {
+  try {
+    console.log("FORM DATA:", data);
 
-  const { error } = await supabase
-    .from("leads")
-    .insert([
-      {
-        name: data.name,
-        email: data.email,
-        phoneNumber: data.phoneNumber,
-        website_url: data.websiteUrl,
-        monthly_ad_budget: data.monthlyAdBudget,
-        package_interest: data.packageInterest
-      }
-    ]);
+    const { error } = await supabase
+      .from("leads")
+      .insert([
+        {
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          website_url: data.websiteUrl,
+          monthly_revenue: data.monthlyRevenue,
+          package_interest: data.packageInterest
+        }
+      ]);
 
-  if (error) {
-    console.error("SUPABASE ERROR:", error);
-    alert("Error submitting form");
-  } else {
-    alert("Lead submitted successfully!");
+    if (error) {
+      throw error;
+    }
+
+    alert("Thank you! We'll contact you shortly.");
+
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong. Please try again.");
   }
 };
 
