@@ -103,16 +103,22 @@ const PopupForm: React.FC<PopupFormProps> = ({ isOpen, onClose }) => {
               {errors.name && <p className="text-xs text-destructive">{errors.name.message}</p>}
             </div>
             
-            <div className="space-y-2">
-              <Label htmlFor="phoneNumber">Phone Number *</Label>
-              <Input 
-                id="phoneNumber" 
-                placeholder="9876543210" 
-                {...register("phone")} 
-                className="border-primary/20 focus:border-primary"
-              />
-              {errors.phoneNumber && <p className="text-xs text-destructive">{errors.phoneNumber.message}</p>}
-            </div>
+         <div className="space-y-2">
+  <Label htmlFor="phoneNumber">Phone Number</Label>
+
+  <Input
+    id="phoneNumber"
+    type="tel"
+    placeholder="9876543210"
+    {...register("phoneNumber")}
+  />
+
+  {errors.phoneNumber && (
+    <p className="text-xs text-destructive">
+      {errors.phoneNumber.message}
+    </p>
+  )}
+</div>
             
             <div className="space-y-2">
               <Label htmlFor="email">Email Address *</Label>
