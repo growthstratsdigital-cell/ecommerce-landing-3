@@ -58,6 +58,12 @@ const PopupForm: React.FC<PopupFormProps> = ({ isOpen, onClose }) => {
       if (error) {
         throw error;
       }
+          // GTM EVENT PUSH
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "generate_lead",
+      form_name: "ecommerce_growth_form"
+    });
 
       alert("Thank you! We'll contact you shortly.");
 
