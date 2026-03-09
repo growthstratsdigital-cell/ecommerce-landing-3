@@ -610,7 +610,6 @@ const Home: React.FC = () => {
                     <Input id="websiteUrl" type="text" placeholder="https://yourbrand.com" {...register("websiteUrl")} />
                     {errors.websiteUrl && <p className="text-xs text-destructive">{errors.websiteUrl.message}</p>}
                   </div>
-                  <div className="space-y-2">
                     <div className="space-y-2">
               <Label htmlFor="monthlyAdBudget">Monthly Ad Budget *</Label>
               <select 
