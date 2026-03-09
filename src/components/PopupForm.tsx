@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { supabase } from "@/lib/supabase";
 import * as z from "zod";
 
 const formSchema = z.object({
@@ -36,45 +37,40 @@ const PopupForm: React.FC<PopupFormProps> = ({ isOpen, onClose }) => {
     resolver: zodResolver(formSchema),
   });
 
-const onSubmit = async (data: FormData) => {
-  try {
-    console.log("FORM DATA:", data);
+ const onSubmit = async (data: PopupFormData) => {
+    try {
 
-    const { error } = await supabase
-      .from("leads")
-      .insert([
-        {
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          website_url: data.websiteUrl,
-          monthly_revenue: data.monthlyRevenue,
-          package_interest: data.packageInterest
-        }
-      ]);
+      console.log("FORM DATA:", data);
 
-    if (error) {
-      throw error;
+      const { error } = await supabase
+        .from("leads")
+        .insert([
+          {
+            name: data.name,
+            email: data.email,
+            phone: data.phoneNumber,
+            website_url: data.websiteUrl,
+            monthly_revenue: data.monthlyAdBudget,
+            package_interest: data.packageInterest
+          }
+        ]);
+
+      if (error) {
+        throw error;
+      }
+
+      alert("Thank you! We'll contact you shortly.");
+
+      reset();
+      onClose();
+
+    } catch (error) {
+
+      console.error("Supabase Error:", error);
+      alert("Something went wrong. Please try again.");
+
     }
-
-    alert("Thank you! We'll contact you shortly.");
-
-  } catch (error) {
-    console.error(error);
-    alert("Something went wrong. Please try again.");
-  }
-};
-
-    if (!response.ok) {
-      throw new Error("Failed to submit");
-    }
-
-    alert("Thank you! We'll contact you shortly.");
-  } catch (error) {
-    console.error(error);
-    alert("Something went wrong. Please try again.");
-  }
-};
+  };
 
   if (!isOpen) return null;
 
