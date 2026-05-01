@@ -60,19 +60,25 @@ const onSubmit = async (data: FormData) => {
     });
 
     if (!response.ok) {
-      throw new Error("Failed to submit");
+      throw new Error("API request failed");
     }
 
-    // GTM tracking
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "generate_lead"
-    });
+    // ✅ GTM SAFE PUSH
+    if (typeof window !== "undefined" && window.dataLayer) {
+      window.dataLayer.push({
+        event: "generate_lead"
+      });
+    }
 
+    // ✅ SUCCESS ALERT
     alert("Thank you! Our team will contact you shortly.");
 
+    return; // 🔥 VERY IMPORTANT → stops execution here
+
   } catch (error) {
-    console.error(error);
+
+    console.error("FORM ERROR:", error);
+
     alert("Something went wrong. Please try again.");
   }
 };
