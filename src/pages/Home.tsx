@@ -59,26 +59,29 @@ const onSubmit = async (data: FormData) => {
       })
     });
 
-    if (!response.ok) {
-      throw new Error("API request failed");
+    // 🔥 IMPORTANT: handle success FIRST
+    if (response.ok) {
+
+      // Safe GTM push
+      try {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "generate_lead"
+        });
+      } catch (gtmError) {
+        console.log("GTM error ignored:", gtmError);
+      }
+
+      alert("Thank you! Our team will contact you shortly.");
+
+      return; // 🚨 CRITICAL → prevents catch from triggering
+
+    } else {
+      throw new Error("API failed");
     }
-
-    // ✅ GTM SAFE PUSH
-    if (typeof window !== "undefined" && window.dataLayer) {
-      window.dataLayer.push({
-        event: "generate_lead"
-      });
-    }
-
-    // ✅ SUCCESS ALERT
-    alert("Thank you! Our team will contact you shortly.");
-
-    return; // 🔥 VERY IMPORTANT → stops execution here
 
   } catch (error) {
-
     console.error("FORM ERROR:", error);
-
     alert("Something went wrong. Please try again.");
   }
 };
