@@ -37,46 +37,44 @@ const PopupForm: React.FC<PopupFormProps> = ({ isOpen, onClose }) => {
     resolver: zodResolver(formSchema),
   });
 
- const onSubmit = async (data: PopupFormData) => {
-    try {
+const onSubmit = async (data: PopupFormData) => {
+  try {
 
-      console.log("FORM DATA:", data);
-
-      const { error } = await supabase
-        .from("leads")
-        .insert([
-          {
-            name: data.name,
-            email: data.email,
-            phone: data.phoneNumber,
-            website_url: data.websiteUrl,
-            monthly_ad_budget: data.monthlyAdBudget,
-            package_interest: data.packageInterest
-          }
-        ]);
-
-      if (error) {
-        throw error;
-      }
-          // GTM EVENT PUSH
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "generate_lead",
-      form_name: "ecommerce_growth_form"
+    const response = await fetch("https://growthstrats.com/wp-json/custom/v1/lead", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        phone: data.phoneNumber,
+        website_url: data.websiteUrl,
+        monthly_ad_budget: data.monthlyAdBudget,
+        package_interest: data.packageInterest
+      })
     });
 
-      alert("Thank you! We'll contact you shortly.");
-
-      reset();
-      onClose();
-
-    } catch (error) {
-
-      console.error("Supabase Error:", error);
-      alert("Something went wrong. Please try again.");
-
+    if (!response.ok) {
+      throw new Error("Failed to submit");
     }
-  };
+
+    // GTM Tracking
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "generate_lead"
+    });
+
+    alert("Thank you! Our team will contact you shortly.");
+
+    reset();
+    onClose();
+
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong. Please try again.");
+  }
+};
 
   if (!isOpen) return null;
 
